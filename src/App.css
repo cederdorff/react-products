@@ -60,7 +60,7 @@ header h1 {
   font-weight: 600;
   color: #1a1a1a;
   margin: 0;
-  /* Begræns til 2 linjer */
+  /* Begræns til 1 linjer */
   display: -webkit-box;
   -webkit-line-clamp: 1;
   line-clamp: 1;
@@ -76,7 +76,7 @@ header h1 {
   /* Begræns til 2 linjer */
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  line-clamp: 23;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
