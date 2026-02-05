@@ -10,7 +10,7 @@ export default function Product({ product }) {
           <p className="product-description">{product.description}</p>
           <p className="product-price">DKK {product.price}</p>
           <span className={`product-stock  ${product.inStock ? "in-stock" : "out-of-stock"}`}>
-            {product.inStock ? "På lager" : "Udsolgt"}
+            {product.inStock ? "In Stock" : "Out of Stock"}
           </span>
         </div>
       </article>

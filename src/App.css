@@ -55,6 +55,13 @@ nav a.active {
   gap: 2rem;
 }
 
+/* Product Card Link */
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 /* Product Card */
 .product-card {
   background: #fff;
