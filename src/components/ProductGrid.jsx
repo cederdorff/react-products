@@ -17,7 +17,7 @@ export default function ProductGrid() {
   }, []);
 
   return (
-    <section className={styles.grid}>
+    <section className={styles.grid} aria-label="Product list">
       {products.map(product => (
         <Product key={product.id} product={product} />
       ))}
