@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import "./NavigationBar.css";
 
 export default function NavigationBar() {
   return (

@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+import "./ProductDetailPage.css";
 
 export default function ProductDetailPage() {
   const params = useParams();
