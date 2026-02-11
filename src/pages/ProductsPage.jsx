@@ -1,5 +1,5 @@
 import ProductGrid from "../components/ProductGrid";
-import styles from "./ProductsPage.module.css";
+// import styles from "./ProductsPage.module.css";
 
 export default function ProductsPage() {
   return (
