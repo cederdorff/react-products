@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Product from "./Product";
-import "./ProductGrid.css";
+import styles from "./ProductGrid.module.css";
 
 export default function ProductGrid() {
   const [products, setProducts] = useState([]);
@@ -17,7 +17,7 @@ export default function ProductGrid() {
   }, []);
 
   return (
-    <section className="product-grid">
+    <section className={styles.grid}>
       {products.map(product => (
         <Product key={product.id} product={product} />
       ))}

@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
-import "./ProductDetailPage.css";
+import styles from "./ProductDetailPage.module.css";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -25,26 +25,26 @@ export default function ProductDetailPage() {
         <h1>{product.title}</h1>
       </header>
       <main>
-        <div className="product-detail">
-          <div className="product-detail-image">
+        <div className={styles.detail}>
+          <div className={styles.detailImage}>
             <img src={product.image} alt={product.title} />
           </div>
-          <div className="product-detail-info">
-            <span className="product-category">{product.category}</span>
+          <div className={styles.detailInfo}>
+            <span className={styles.category}>{product.category}</span>
             <h2>{product.title}</h2>
-            <div className="product-rating">
-              <span className="rating-stars">⭐ {product.rating?.rate}</span>
-              <span className="rating-count">({product.rating?.count} reviews)</span>
+            <div className={styles.rating}>
+              <span className={styles.ratingStars}>⭐ {product.rating?.rate}</span>
+              <span className={styles.ratingCount}>({product.rating?.count} reviews)</span>
             </div>
-            <p className="product-price">DKK {product.price}</p>
-            <span className={`product-stock ${product.inStock ? "in-stock" : "out-of-stock"}`}>
+            <p className={styles.price}>DKK {product.price}</p>
+            <span className={`${styles.stock} ${product.inStock ? styles.inStock : styles.outOfStock}`}>
               {product.inStock ? "In Stock" : "Out of Stock"}
             </span>
-            <div className="product-description-section">
+            <div className={styles.descriptionSection}>
               <h3>Description</h3>
               <p>{product.description}</p>
             </div>
-            <button className="add-to-cart-btn" disabled={!product.inStock}>
+            <button className={styles.addToCartBtn} disabled={!product.inStock}>
               {product.inStock ? "Add to Cart" : "Out of Stock"}
             </button>
           </div>

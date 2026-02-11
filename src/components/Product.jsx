@@ -1,16 +1,16 @@
 import { Link } from "react-router";
-import "./Product.css";
+import styles from "./Product.module.css";
 
 export default function Product({ product }) {
   return (
-    <Link to={`/products/${product.id}`} className="product-card-link">
-      <article className="product-card">
-        <img src={product.image} className="product-image" />
-        <div className="product-info">
-          <h2 className="product-title">{product.title}</h2>
-          <p className="product-description">{product.description}</p>
-          <p className="product-price">DKK {product.price}</p>
-          <span className={`product-stock  ${product.inStock ? "in-stock" : "out-of-stock"}`}>
+    <Link to={`/products/${product.id}`} className={styles.cardLink}>
+      <article className={styles.card}>
+        <img src={product.image} className={styles.image} />
+        <div className={styles.info}>
+          <h2 className={styles.title}>{product.title}</h2>
+          <p className={styles.description}>{product.description}</p>
+          <p className={styles.price}>DKK {product.price}</p>
+          <span className={`${styles.stock} ${product.inStock ? styles.inStock : styles.outOfStock}`}>
             {product.inStock ? "In Stock" : "Out of Stock"}
           </span>
         </div>
