@@ -26,5 +26,5 @@
 
 /* Active link styling */
 .link:global(.active) {
-  background-color: #646cff;
+  background-color: #4a50c7;
 }

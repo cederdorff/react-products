@@ -32,16 +32,22 @@ export default function ProductDetailPage() {
           <div className={styles.detailInfo}>
             <span className={styles.category}>{product.category}</span>
             <h2>{product.title}</h2>
-            <div className={styles.rating} aria-label={`Rating: ${product.rating?.rate} out of 5, ${product.rating?.count} reviews`}>
-              <span className={styles.ratingStars} aria-hidden="true">⭐ {product.rating?.rate}</span>
-              <span className={styles.ratingCount} aria-hidden="true">({product.rating?.count} reviews)</span>
+            <div
+              className={styles.rating}
+              role="group"
+              aria-label={`Rating: ${product.rating?.rate} out of 5, ${product.rating?.count} reviews`}>
+              <span className={styles.ratingStars} aria-hidden="true">
+                ⭐ {product.rating?.rate}
+              </span>
+              <span className={styles.ratingCount} aria-hidden="true">
+                ({product.rating?.count} reviews)
+              </span>
             </div>
             <p className={styles.price}>DKK {product.price}</p>
             <span
               className={`${styles.stock} ${product.inStock ? styles.inStock : styles.outOfStock}`}
               role="status"
-              aria-label={product.inStock ? "In stock" : "Out of stock"}
-            >
+              aria-label={product.inStock ? "In stock" : "Out of stock"}>
               {product.inStock ? "In Stock" : "Out of Stock"}
             </span>
             <div className={styles.descriptionSection}>
