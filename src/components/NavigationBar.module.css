@@ -24,6 +24,11 @@
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+.link:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
 /* Active link styling */
 .link:global(.active) {
   background-color: #4a50c7;

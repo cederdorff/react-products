@@ -3,6 +3,12 @@
   text-decoration: none;
   color: inherit;
   display: block;
+  border-radius: 12px;
+}
+
+.cardLink:focus-visible {
+  outline: 3px solid #4a50c7;
+  outline-offset: 2px;
 }
 
 /* Product Card */
