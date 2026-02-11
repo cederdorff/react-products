@@ -1,11 +1,13 @@
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ProductDetailPage.module.css";
 
 export default function ProductDetailPage() {
   const params = useParams();
   const productId = Number(params.id);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const headingRef = useRef(null);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -14,17 +16,53 @@ export default function ProductDetailPage() {
       const products = await response.json();
       const productToDisplay = products.find(p => p.id === productId);
       setProduct(productToDisplay);
+      setLoading(false);
     }
 
     fetchProducts();
   }, [productId]);
 
+  useEffect(() => {
+    if (product?.title) {
+      document.title = `${product.title} | React Products`;
+      headingRef.current?.focus();
+    }
+  }, [product]);
+
+  if (loading) {
+    return (
+      <>
+        <header>
+          <h1>Loading...</h1>
+        </header>
+        <main id="main-content">
+          <p>Loading product details...</p>
+        </main>
+      </>
+    );
+  }
+
+  if (!product) {
+    return (
+      <>
+        <header>
+          <h1>Product Not Found</h1>
+        </header>
+        <main id="main-content">
+          <p>The product you are looking for does not exist.</p>
+        </main>
+      </>
+    );
+  }
+
   return (
     <>
       <header>
-        <h1>{product.title}</h1>
+        <h1 ref={headingRef} tabIndex={-1}>
+          {product.title}
+        </h1>
       </header>
-      <main>
+      <main id="main-content">
         <div className={styles.detail}>
           <div className={styles.detailImage}>
             <img src={product.image} alt={product.title || ""} />
