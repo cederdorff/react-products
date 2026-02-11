@@ -24,8 +24,8 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     if (product?.title) {
-      document.title = `${product.title} | React Products`;
-      headingRef.current?.focus();
+      document.title = `${product.title} | React Products`; // Set the document title based on the product title
+      headingRef.current?.focus(); // Focus the heading for accessibility when the product details are loaded
     }
   }, [product]);
 

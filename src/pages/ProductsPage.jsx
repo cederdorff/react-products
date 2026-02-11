@@ -6,8 +6,8 @@ export default function ProductsPage() {
   const headingRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Products | React Products";
-    headingRef.current?.focus();
+    document.title = "Products | React Products"; // Set the document title for the products page
+    headingRef.current?.focus(); // Focus the heading for accessibility when the page loads
   }, []);
 
   return (

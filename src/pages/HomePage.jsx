@@ -5,8 +5,8 @@ export default function HomePage() {
   const headingRef = useRef(null);
 
   useEffect(() => {
-    document.title = "Home | React Products";
-    headingRef.current?.focus();
+    document.title = "Home | React Products"; // Set the document title for the home page
+    headingRef.current?.focus(); // Focus the heading for accessibility when the page loads
   }, []);
 
   return (
