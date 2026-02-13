@@ -5,6 +5,6 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig(({ command }) => {
   return {
     plugins: [react()],
-    base: command === "serve" ? "/" : "/YOUR-REPO-NAME/" // 👈 Replace with your GitHub repository name
+    base: command === "serve" ? "/" : "/react-products/" // 👈 Replace with your GitHub repository name
   };
 });
