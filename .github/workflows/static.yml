@@ -14,10 +14,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one deployment at a time
+# Allow only one deployment at a time, but let in-progress deploys finish
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -34,7 +34,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: "npm"
 
       # Install dependencies (faster than npm install)
