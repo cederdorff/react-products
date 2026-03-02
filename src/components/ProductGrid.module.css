@@ -1,6 +1,134 @@
+/* Filter Menu Trigger */
+.openFilterButton {
+  position: fixed;
+  top: 6.5rem;
+  right: 1rem;
+  z-index: 40;
+  border: 1px solid #222;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.6rem 0.85rem;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Drawer + Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 45;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(360px, 88vw);
+  height: 100dvh;
+  background: #fff;
+  border-left: 1px solid #ddd;
+  padding: 1rem;
+  transform: translateX(100%);
+  transition: transform 0.25s ease;
+  z-index: 50;
+  overflow-y: auto;
+}
+
+.drawerOpen {
+  transform: translateX(0);
+}
+
+.drawerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.drawerHeader h2 {
+  margin: 0;
+}
+
+.closeButton {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+  padding: 0.5rem 0.7rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Filter Menu */
+.filters {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.filterField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 220px;
+  font-weight: 600;
+}
+
+.filterField select {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font: inherit;
+}
+
+.stockToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.stockToggle input {
+  width: 1rem;
+  height: 1rem;
+}
+
+.resultCount {
+  margin: 0 0 1rem 0;
+  color: #555;
+}
+
 /* Product Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
+}
+
+@media (max-width: 640px) {
+  .openFilterButton {
+    top: 6rem;
+    right: 0.75rem;
+  }
+
+  .drawer {
+    width: 100vw;
+  }
+
+  .filterField {
+    min-width: 0;
+  }
 }
