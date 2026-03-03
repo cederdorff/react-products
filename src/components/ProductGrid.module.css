@@ -1,15 +1,10 @@
-/* On-page Filters */
+/* Filter panel */
 .filterPanel {
+  background: #fff;
   border: 1px solid #ddd;
   border-radius: 10px;
-  background: #fff;
-  padding: 1rem;
   margin: 0 0 1rem;
-}
-
-.filterTitle {
-  margin: 0 0 0.75rem;
-  font-size: 1.1rem;
+  padding: 1rem;
 }
 
 .filterRow {
@@ -28,12 +23,12 @@
 }
 
 .filterField select {
-  width: 100%;
-  padding: 0.55rem 0.7rem;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #fff;
   font: inherit;
+  padding: 0.55rem 0.7rem;
+  width: 100%;
 }
 
 .stockToggle {
@@ -60,17 +55,18 @@
 }
 
 .resultCount {
-  margin: 0 0 1rem;
   color: #555;
+  margin: 0 0 1rem;
 }
 
-/* Product Grid */
+/* Product grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
+/* Mobile */
 @media (max-width: 640px) {
   .filterField {
     min-width: 0;
