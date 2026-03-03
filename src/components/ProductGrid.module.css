@@ -164,8 +164,8 @@
 }
 
 @media (max-width: 640px) {
-  .filterBar {
-    justify-content: flex-end;
+  .drawer {
+    width: min(320px, 86vw);
   }
 
   .filterField {

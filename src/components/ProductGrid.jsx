@@ -20,37 +20,22 @@ export default function ProductGrid() {
     fetchProducts();
   }, []);
 
-  // Close filter menu when Escape key is pressed
-  useEffect(() => {
-    function handleEscape(event) {
-      if (event.key === "Escape") {
-        setIsFilterMenuOpen(false);
-      }
-    }
+  const categories = [...new Set(products.map(product => product.category))].sort();
 
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
-  }, []);
-
-  // Extract unique categories from products and sort them alphabetically
-  const categories = [...new Set(products.map(product => product.category))].sort((a, b) => a.localeCompare(b));
-
-  // Filter products based on selected category and stock status
   const filteredProducts = products.filter(product => {
-    const categoryMatches = selectedCategory === "all" || product.category === selectedCategory; // Check if product matches selected category
-    const stockMatches = !inStockOnly || product.inStock; // Check if product is in stock if "In stock only" is checked
-    return categoryMatches && stockMatches; // Include product if it matches both category and stock filters
+    const categoryMatches = selectedCategory === "all" || product.category === selectedCategory;
+    const stockMatches = !inStockOnly || product.inStock;
+    return categoryMatches && stockMatches;
   });
 
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "price-asc") return a.price - b.price;
-    if (sortBy === "price-desc") return b.price - a.price;
-    if (sortBy === "rating-desc") return (b.rating?.rate ?? 0) - (a.rating?.rate ?? 0);
-    return 0;
-  });
-
-  const hasActiveFilters = selectedCategory !== "all" || inStockOnly || sortBy !== "none";
-  const activeFilterCount = [selectedCategory !== "all", inStockOnly, sortBy !== "none"].filter(Boolean).length;
+  // Sort the filtered products based on the selected sort option
+  if (sortBy === "price-asc") {
+    filteredProducts.sort((a, b) => a.price - b.price);
+  } else if (sortBy === "price-desc") {
+    filteredProducts.sort((a, b) => b.price - a.price);
+  } else if (sortBy === "rating-desc") {
+    filteredProducts.sort((a, b) => b.rating.rate - a.rating.rate);
+  }
 
   return (
     <>
@@ -61,7 +46,7 @@ export default function ProductGrid() {
           onClick={() => setIsFilterMenuOpen(true)}
           aria-controls="filter-drawer"
           aria-expanded={isFilterMenuOpen}>
-          Filters {activeFilterCount > 0 ? `(${activeFilterCount})` : ""}
+          Filters
         </button>
       </div>
 
@@ -129,8 +114,7 @@ export default function ProductGrid() {
               setSelectedCategory("all");
               setInStockOnly(false);
               setSortBy("none");
-            }}
-            disabled={!hasActiveFilters}>
+            }}>
             Reset
           </button>
           <button type="button" className={styles.primaryCloseButton} onClick={() => setIsFilterMenuOpen(false)}>
@@ -144,7 +128,7 @@ export default function ProductGrid() {
       </p>
 
       <section className={styles.grid} aria-label="Product list">
-        {sortedProducts.map(product => (
+        {filteredProducts.map(product => (
           <Product key={product.id} product={product} />
         ))}
       </section>
