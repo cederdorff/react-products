@@ -20,21 +20,22 @@ export default function ProductGrid() {
     fetchProducts();
   }, []);
 
+  // Get a sorted list of unique categories from the products data to populate the category filter dropdown
   const categories = [...new Set(products.map(product => product.category))].sort();
 
   const filteredProducts = products.filter(product => {
-    const categoryMatches = selectedCategory === "all" || product.category === selectedCategory;
-    const stockMatches = !inStockOnly || product.inStock;
+    const categoryMatches = selectedCategory === "all" || product.category === selectedCategory; // Show all categories if "all" is selected, otherwise filter by category
+    const stockMatches = !inStockOnly || product.inStock; // If "in stock only" is checked, only show products that are in stock. If it's not checked, show all products regardless of stock status
     return categoryMatches && stockMatches;
   });
 
   // Sort the filtered products based on the selected sort option
   if (sortBy === "price-asc") {
-    filteredProducts.sort((a, b) => a.price - b.price);
+    filteredProducts.sort((a, b) => a.price - b.price); // Sort by price in ascending order (lowest to highest)
   } else if (sortBy === "price-desc") {
-    filteredProducts.sort((a, b) => b.price - a.price);
+    filteredProducts.sort((a, b) => b.price - a.price); // Sort by price in descending order (highest to lowest)
   } else if (sortBy === "rating-desc") {
-    filteredProducts.sort((a, b) => b.rating.rate - a.rating.rate);
+    filteredProducts.sort((a, b) => b.rating.rate - a.rating.rate); // Sort by rating in descending order (highest to lowest)
   }
 
   return (
@@ -118,7 +119,7 @@ export default function ProductGrid() {
             Reset
           </button>
           <button type="button" className={styles.primaryCloseButton} onClick={() => setIsFilterMenuOpen(false)}>
-            Close menu
+            Show results
           </button>
         </div>
       </aside>
