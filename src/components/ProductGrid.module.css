@@ -1,91 +1,22 @@
-/* Filter Bar */
-.filterBar {
-  display: flex;
-  justify-content: flex-end;
+/* On-page Filters */
+.filterPanel {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  padding: 1rem;
   margin: 0 0 1rem;
 }
 
-/* Filter Menu Trigger */
-.openFilterButton {
-  position: relative;
-  z-index: 40;
-  border: 1px solid #222;
-  border-radius: 8px;
-  background: #fff;
-  padding: 0.6rem 0.85rem;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
+.filterTitle {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
 }
 
-/* Drawer + Overlay */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  z-index: 110;
-}
-
-.overlayVisible {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: min(360px, 88vw);
-  max-width: 100%;
-  height: 100dvh;
-  background: #fff;
-  border-left: 1px solid #ddd;
-  padding: 2rem;
-  transform: translateX(100%);
-  transition: transform 0.25s ease;
-  z-index: 111;
-  overflow-y: auto;
-}
-
-.drawerOpen {
-  transform: translateX(0);
-}
-
-.drawerHeader {
+.filterRow {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.drawerHeader h2 {
-  margin: 0;
-}
-
-.helperText {
-  margin: 0 0 1rem 0;
-  color: #555;
-  font-size: 0.95rem;
-}
-
-.closeButton {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #fff;
-  padding: 0.5rem 0.7rem;
-  font: inherit;
-  cursor: pointer;
-}
-
-/* Filter Menu */
-.filters {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
 }
 
 .filterField {
@@ -109,20 +40,13 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.6rem 0;
   font-weight: 500;
 }
 
 .stockToggle input {
   width: 1rem;
   height: 1rem;
-}
-
-.drawerActions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
 }
 
 .resetButton {
@@ -135,24 +59,8 @@
   cursor: pointer;
 }
 
-.resetButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.primaryCloseButton {
-  border: 1px solid #222;
-  border-radius: 8px;
-  background: #222;
-  color: #fff;
-  padding: 0.6rem 0.8rem;
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 .resultCount {
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   color: #555;
 }
 
@@ -164,15 +72,12 @@
 }
 
 @media (max-width: 640px) {
-  .drawer {
-    width: min(320px, 86vw);
-  }
-
   .filterField {
     min-width: 0;
+    width: 100%;
   }
 
-  .drawerActions {
-    grid-template-columns: 1fr;
+  .filterRow {
+    align-items: stretch;
   }
 }
