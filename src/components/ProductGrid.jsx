@@ -44,22 +44,31 @@ export default function ProductGrid() {
   return (
     <>
       <section className={styles.filterPanel} aria-label="Product filters">
-        <div className={styles.filterRow}>
-          <label className={styles.filterField} htmlFor="category-filter">
-            Category
-            <select
-              id="category-filter"
-              value={selectedCategory}
-              onChange={event => setSelectedCategory(event.target.value)}>
-              <option value="all">All categories</option>
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-          </label>
+        <div className={styles.categorySection}>
+          <p className={styles.categoryLabel}>Category</p>
+          <div className={styles.categoryButtons}>
+            <button
+              type="button"
+              className={`${styles.categoryButton} ${selectedCategory === "all" ? styles.activeCategoryButton : ""}`}
+              onClick={() => setSelectedCategory("all")}
+              aria-pressed={selectedCategory === "all"}>
+              All categories
+            </button>
 
+            {categories.map(category => (
+              <button
+                key={category}
+                type="button"
+                className={`${styles.categoryButton} ${selectedCategory === category ? styles.activeCategoryButton : ""}`}
+                onClick={() => setSelectedCategory(category)}
+                aria-pressed={selectedCategory === category}>
+                {category}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.filterRow}>
           <label className={styles.filterField} htmlFor="sort-filter">
             Sort by
             <select id="sort-filter" value={sortBy} onChange={event => setSortBy(event.target.value)}>

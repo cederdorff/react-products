@@ -7,9 +7,34 @@
   margin: 0 0 1rem;
 }
 
-.filterTitle {
-  margin: 0 0 0.75rem;
-  font-size: 1.1rem;
+.categorySection {
+  margin: 0 0 1rem;
+}
+
+.categoryLabel {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.categoryButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.categoryButton {
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  background: #fff;
+  padding: 0.45rem 0.75rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.activeCategoryButton {
+  border-color: #222;
+  background: #222;
+  color: #fff;
 }
 
 .filterRow {
