@@ -6,6 +6,7 @@ export default function ProductGrid() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [inStockOnly, setInStockOnly] = useState(false);
+  const [sortBy, setSortBy] = useState("none");
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -39,6 +40,14 @@ export default function ProductGrid() {
     const categoryMatches = selectedCategory === "all" || product.category === selectedCategory; // Check if product matches selected category
     const stockMatches = !inStockOnly || product.inStock; // Check if product is in stock if "In stock only" is checked
     return categoryMatches && stockMatches; // Include product if it matches both category and stock filters
+  });
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortBy === "price-asc") return a.price - b.price;
+    if (sortBy === "price-desc") return b.price - a.price;
+    if (sortBy === "rating-desc") return (b.rating?.rate ?? 0) - (a.rating?.rate ?? 0);
+    if (sortBy === "rating-asc") return (a.rating?.rate ?? 0) - (b.rating?.rate ?? 0);
+    return 0;
   });
 
   return (
@@ -94,6 +103,17 @@ export default function ProductGrid() {
             />
             In stock only
           </label>
+
+          <label className={styles.filterField} htmlFor="sort-filter">
+            Sort by
+            <select id="sort-filter" value={sortBy} onChange={event => setSortBy(event.target.value)}>
+              <option value="none">Default</option>
+              <option value="price-asc">Price: Low to high</option>
+              <option value="price-desc">Price: High to low</option>
+              <option value="rating-desc">Rating: High to low</option>
+              <option value="rating-asc">Rating: Low to high</option>
+            </select>
+          </label>
         </section>
       </aside>
 
@@ -102,7 +122,7 @@ export default function ProductGrid() {
       </p>
 
       <section className={styles.grid} aria-label="Product list">
-        {filteredProducts.map(product => (
+        {sortedProducts.map(product => (
           <Product key={product.id} product={product} />
         ))}
       </section>
