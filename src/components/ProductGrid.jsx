@@ -46,25 +46,30 @@ export default function ProductGrid() {
     if (sortBy === "price-asc") return a.price - b.price;
     if (sortBy === "price-desc") return b.price - a.price;
     if (sortBy === "rating-desc") return (b.rating?.rate ?? 0) - (a.rating?.rate ?? 0);
-    if (sortBy === "rating-asc") return (a.rating?.rate ?? 0) - (b.rating?.rate ?? 0);
     return 0;
   });
 
+  const hasActiveFilters = selectedCategory !== "all" || inStockOnly || sortBy !== "none";
+  const activeFilterCount = [selectedCategory !== "all", inStockOnly, sortBy !== "none"].filter(Boolean).length;
+
   return (
     <>
-      <button
-        className={styles.openFilterButton}
-        type="button"
-        onClick={() => setIsFilterMenuOpen(true)}
-        aria-controls="filter-drawer"
-        aria-expanded={isFilterMenuOpen}>
-        Filter
-      </button>
+      <div className={styles.filterBar}>
+        <button
+          className={styles.openFilterButton}
+          type="button"
+          onClick={() => setIsFilterMenuOpen(true)}
+          aria-controls="filter-drawer"
+          aria-expanded={isFilterMenuOpen}>
+          Filters {activeFilterCount > 0 ? `(${activeFilterCount})` : ""}
+        </button>
+      </div>
 
       <button
         type="button"
         className={`${styles.overlay} ${isFilterMenuOpen ? styles.overlayVisible : ""}`}
         onClick={() => setIsFilterMenuOpen(false)}
+        aria-label="Close filter menu"
       />
 
       <aside
@@ -72,11 +77,12 @@ export default function ProductGrid() {
         className={`${styles.drawer} ${isFilterMenuOpen ? styles.drawerOpen : ""}`}
         aria-label="Filter menu">
         <div className={styles.drawerHeader}>
-          <h2>Filter</h2>
+          <h2>Filter products</h2>
           <button type="button" className={styles.closeButton} onClick={() => setIsFilterMenuOpen(false)}>
-            Luk
+            Close
           </button>
         </div>
+        <p className={styles.helperText}>Choose filters below to narrow the list.</p>
 
         <section className={styles.filters}>
           <label className={styles.filterField} htmlFor="category-filter">
@@ -111,10 +117,26 @@ export default function ProductGrid() {
               <option value="price-asc">Price: Low to high</option>
               <option value="price-desc">Price: High to low</option>
               <option value="rating-desc">Rating: High to low</option>
-              <option value="rating-asc">Rating: Low to high</option>
             </select>
           </label>
         </section>
+
+        <div className={styles.drawerActions}>
+          <button
+            type="button"
+            className={styles.resetButton}
+            onClick={() => {
+              setSelectedCategory("all");
+              setInStockOnly(false);
+              setSortBy("none");
+            }}
+            disabled={!hasActiveFilters}>
+            Reset
+          </button>
+          <button type="button" className={styles.primaryCloseButton} onClick={() => setIsFilterMenuOpen(false)}>
+            Close menu
+          </button>
+        </div>
       </aside>
 
       <p className={styles.resultCount} aria-live="polite">
